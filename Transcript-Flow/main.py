@@ -1537,7 +1537,7 @@ async def process_transcript(
         return JSONResponse({
             "status": "success",
             "process_id": process_id,
-            "transcript": transcript_text[:2000] + "..." if len(transcript_text) > 2000 else transcript_text,
+            "transcript": transcript_text,
             "transcript_length": len(transcript_text),
             "pdf_filename": pdf_filename,
             "download_url": f"/download/{process_id}"
