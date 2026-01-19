@@ -5,11 +5,14 @@ Two endpoints:
 1. POST /process - Process transcript/audio and generate PDF
 2. GET /download/{filename} - Download the generated PDF
 """
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 from fastapi import FastAPI, File, UploadFile, HTTPException, BackgroundTasks
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
-import os
+
 import json
 import time
 import shutil
@@ -21,7 +24,7 @@ from datetime import datetime
 from typing import Dict, List, Any, Optional
 from pathlib import Path
 
-from dotenv import load_dotenv
+
 import pandas as pd
 from docx import Document
 import assemblyai as aai
@@ -39,12 +42,11 @@ except ImportError:
 
 
 
-load_dotenv()
-
-CHAT_DAILOQA_LLM_MODEL = os.getenv("CHAT_DAILOQA_LLM_MODEL")
-LITELLM_BASE_URL = os.getenv("LITELLM_BASE_URL")
-LITELLM_API_KEY = os.getenv("LITELLM_API_KEY")
-ASSEMBLYAI_API_KEY = os.getenv("ASSEMBLYAI_API_KEY")
+# LLM Configuration
+CHAT_DAILOQA_LLM_MODEL = os.getenv("MODEL_NAME")           # ✅ Matches .env
+LITELLM_BASE_URL = os.getenv("DAILOQA_LLM_BASE_URL")       # ✅ Matches .env
+LITELLM_API_KEY = os.getenv("DAILOQA_LLM_API_KEY")         # ✅ Matches .env
+ASSEMBLYAI_API_KEY = os.getenv("ASSEMBLYAI_API_KEY")       # ✅ Matches .env
 
 # File paths - these should be configured based on your deployment
 EXCEL_PATH = os.getenv("EXCEL_PATH", "./files/Paraplanner_Extraction and Rules_v2.xlsx")
