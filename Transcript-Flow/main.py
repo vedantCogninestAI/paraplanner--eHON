@@ -21,6 +21,7 @@ from datetime import datetime
 from typing import Dict, List, Any, Optional
 from pathlib import Path
 
+from dotenv import load_dotenv
 import pandas as pd
 from docx import Document
 import assemblyai as aai
@@ -36,13 +37,14 @@ except ImportError:
 # CONFIGURATION
 # =============================================================================
 
-# LLM Configuration
-CHAT_DAILOQA_LLM_MODEL = os.getenv("CHAT_DAILOQA_LLM_MODEL", "gemini-2.5-flash-v1")
-LITELLM_BASE_URL = os.getenv("LITELLM_BASE_URL", "https://qa2-broccoli-apillmgov.dailoqa.com/apillmgov")
-LITELLM_API_KEY = os.getenv("LITELLM_API_KEY", "sk-aJjT3KyGo6Sb-GbIJ8L2XA")
 
-# AssemblyAI Configuration
-ASSEMBLYAI_API_KEY = os.getenv("ASSEMBLYAI_API_KEY", "8f97e1e9e4184f83a69fed682ce95f19")
+
+load_dotenv()
+
+CHAT_DAILOQA_LLM_MODEL = os.getenv("CHAT_DAILOQA_LLM_MODEL")
+LITELLM_BASE_URL = os.getenv("LITELLM_BASE_URL")
+LITELLM_API_KEY = os.getenv("LITELLM_API_KEY")
+ASSEMBLYAI_API_KEY = os.getenv("ASSEMBLYAI_API_KEY")
 
 # File paths - these should be configured based on your deployment
 EXCEL_PATH = os.getenv("EXCEL_PATH", "./files/Paraplanner_Extraction and Rules_v2.xlsx")
