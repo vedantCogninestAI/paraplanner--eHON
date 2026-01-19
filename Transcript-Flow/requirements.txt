@@ -1,0 +1,20 @@
+# FastAPI and server
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+python-multipart>=0.0.6
+
+# Data processing
+pandas>=2.0.0
+openpyxl>=3.1.0
+
+# Document processing
+python-docx>=1.0.0
+
+# PDF conversion (Windows only)
+docx2pdf>=0.1.8; sys_platform == "win32"
+
+# AssemblyAI for audio transcription
+assemblyai>=0.23.0
+
+# Utilities
+python-dotenv>=1.0.0
