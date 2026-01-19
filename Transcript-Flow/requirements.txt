@@ -18,3 +18,5 @@ assemblyai>=0.23.0
 
 # Utilities
 python-dotenv>=1.0.0
+
+pip install git+https://sdk-user:glpat-5-d363uQn576U-yeMvZQ@code.dailoqa.com/broccoli-development/dailoqa-sdk.git@v3.1.11
