@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  paraplanner:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: paraplanner-api
+    ports:
+      - "8000:8000"
+    volumes:
+      # Mount outputs directory to persist generated files
+      - ./outputs:/app/outputs
+      # Mount files directory for templates (optional, already copied in build)
+      - ./files:/app/files
+    env_file:
+      - .env
+    environment:
+      - PYTHONUNBUFFERED=1
+      - OUTPUT_DIR=/app/outputs
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
